@@ -1,0 +1,12 @@
+---
+- name: configure apache2
+  hosts: 
+  tasks:
+   - name: install apache2
+     apt:
+      name: apache2
+      state: present
+
+
+
+...

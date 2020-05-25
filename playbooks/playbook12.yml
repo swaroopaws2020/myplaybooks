@@ -1,0 +1,14 @@
+- hosts: all
+  gather_facts: no
+  tasks:
+  - name: starting apache2
+    service: name=apache2 state=started enabled=yes
+ 
+  - name: apache2 status
+    command: service apache2 status
+    register: apache2_status  
+  
+  - name: apache2 status output
+    debug:
+      var: apache2_status
+ 

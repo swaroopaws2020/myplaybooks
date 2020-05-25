@@ -1,0 +1,16 @@
+---
+- name: Create a tag for run the playbook
+  hosts: all
+  tasks: 
+   - name: create a user and set passwd
+     user:
+      name: bujji1
+      password: admin
+      home: /home/bujji1
+     tags: user_create
+   - name: create a file under home directory of the new user
+     file:
+      name: test2
+      state: touch
+      path: /home/bujji1
+...

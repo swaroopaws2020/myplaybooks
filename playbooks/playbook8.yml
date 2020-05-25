@@ -1,0 +1,28 @@
+---
+- name: Modify the index.html in apache2 server & check the url response
+  hosts: all
+  tasks:
+   - name: install apache2 server
+     apt:
+      name: apache2
+      state: present
+     notify: check_url response
+   - name: Exit index.html file
+     copy:
+      content: "May 14th - New Web Page"
+      dest: /var/www/html/index.html
+     notify: restart apache2
+  handlers:
+   - name: restart apache2
+     service:
+      name: apache2
+      state: restarted
+   - name: check_url response
+     uri:
+      url: "{{items}}"
+      status_code: 200
+     with_items:
+      - http://172.16.3.182
+      - http://172.16.3.46   
+
+...

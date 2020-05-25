@@ -1,0 +1,19 @@
+--- 
+- 
+  name: Change the port no's of "{{a}}"
+  hosts: webserver
+  tasks: 
+   - name: change the port no of "{{a}}"
+     replace: 
+      regexp: "{{d}}"
+      replace: "{{e}}"
+      path: /etc/tomcat8/server.xml
+   - name: "check the url is reachable or not"
+     uri: 
+      url: "{{f}}"
+      status_code: "{{g}}"
+   - name: Restart the "{{a}}" server
+     service:
+      name: tomcat8
+      state: restarted
+...

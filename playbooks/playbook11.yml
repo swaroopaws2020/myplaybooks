@@ -1,0 +1,15 @@
+---
+- name: uninstall java and disply the output
+  hosts: all
+  tasks:
+   - name: uninstall java
+     apt:
+      name: openjdk-8-jdk
+      state: absent
+     register: a
+   - name: display output of above module
+     debug:
+      var: a
+
+
+...
